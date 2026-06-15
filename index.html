@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Kak Imeh 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(circle at top, #ffeb55, #360861);
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: #ffeb55;
+  filter: blur(150px);
+  opacity: 0.2;
+  animation: move 10s infinite alternate;
+}
+
+@keyframes move {
+  0% { transform: translate(-100px, -100px); }
+  100% { transform: translate(200px, 200px); }
+}
+
+.page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  transition: 1s;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3em;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fadeUp 2s forwards;
+}
+
+.subtitle {
+  opacity: 0.6;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ffeb55;
+  color: black;
+  transform: scale(1.1);
+}
+
+.card {
+  max-width: 600px;
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  line-height: 1.6;
+}
+
+@keyframes fadeUp {
+  from { transform: translateY(30px); opacity: 0;}
+  to { transform: translateY(0); opacity: 1;}
+}
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: floatUp linear;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh); opacity: 1;}
+  100% { transform: translateY(-10vh); opacity: 0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="voice">
+  <source src="voice.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page" id="p1">
+  <h1>Happy Birthday</h1>
+  <h1>Kak Imeh 🎂</h1>
+  <p class="subtitle">Kalau dunia luas… kamu adalah bagian terindah di dalamnya.</p>
+  <button onclick="startExperience()">Enter </button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2" style="display:none;">
+  <div class="card">
+    <h1>For You...</h1>
+    <p id="type"></p>
+  </div>
+  <br>
+  <button onclick="go(2,3)">Next</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3" style="display:none;">
+  <div class="card">
+    <h1>I Hope...</h1>
+    <p>
+      
+      Di hari spesialmu ini…
+Aku nggak minta banyak,
+aku cuma ingin kamu selalu bahagia.
+Semoga kamu selalu sehat,
+selalu dilindungi di setiap langkahmu,
+dan semua hal baik pelan-pelan datang menghampirimu.
+      <br><br>
+Semoga kamu semakin cantik,
+bukan hanya di mata orang lain…
+tapi juga di mata sendiri.
+ <br><br>
+Dan kalau suatu hari nanti
+kamu merasa lelah menghadapi dunia…
+aku harap kamu tahu,
+ada aku di sini…
+yang diam-diam selalu mendoakanmu,
+selalu peduli sama kamu,
+dan selalu ingin melihat kamu tersenyum 
+ <br><br>
+Karena jujur…
+di antara semua kemungkinan yang ada,
+aku tetap berharap
+aku bisa jadi bagian kecil dari kebahagiaanmu✨
+    </p>
+  </div>
+</div>
+
+<script>
+// TRANSISI HALAMAN
+function go(a,b){
+  document.getElementById("p"+a).style.display="none";
+  document.getElementById("p"+b).style.display="flex";
+}
+
+// START EXPERIENCE (AUDIO + CINEMATIC)
+function startExperience(){
+  const music = document.getElementById("bgMusic");
+  const voice = document.getElementById("voice");
+
+  // musik fade in
+  music.volume = 0;
+  music.play();
+
+  let fade = setInterval(() => {
+    if (music.volume < 0.3) {
+      music.volume += 0.01;
+    }
+  }, 200);
+
+  // delay voice
+  setTimeout(() => {
+    voice.play();
+  }, 2000);
+
+  go(1,2);
+}
+
+// AUTO LANJUT SETELAH VOICE
+document.getElementById("voice").addEventListener("ended", () => {
+  go(2,3);
+});
+
+// TYPING EFFECT
+const msg = `Selamat ulang tahun ya, Kak Imeh…
+Kalau aku boleh jujur,
+dari sekian banyak hal yang pernah aku temui di dunia ini,
+kamu adalah yang paling ingin aku banggakan.
+Kamu itu sederhana,
+tapi entah kenapa selalu punya cara
+untuk membuat segalanya terasa lebih berarti.
+Aku nggak tahu harus mulai dari mana
+untuk menjelaskan betapa berharganya kamu…
+karena bahkan kata “istimewa” pun
+rasanya masih kurang untuk menggambarkan kamu.
+Kadang aku cuma bisa diam,
+melihat kamu dari jauh,
+dan merasa cukup…
+karena kamu ada di dunia yang sama denganku✨`;
+
+let j = 0;
+function typing(){
+  if(j < msg.length){
+    document.getElementById("type").innerHTML += msg.charAt(j);
+    j++;
+    setTimeout(typing, 35);
+  }
+}
+setTimeout(typing, 1500);
+
+// FLOATING HEART
+setInterval(()=>{
+  const h = document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(Math.random()*3+3)+"s";
+  document.body.appendChild(h);
+
+  setTimeout(()=>{h.remove()},5000);
+},300);
+
+// PARALLAX
+document.addEventListener("mousemove",(e)=>{
+  const glow = document.querySelector(".glow");
+  glow.style.transform = `translate(${e.clientX/20}px, ${e.clientY/20}px)`;
+});
+</script>
+
+</body>
+</html>
